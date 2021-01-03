@@ -50,20 +50,28 @@ public class RitoSummoner {
     }
 
     //gets the stats of a summoner during the LAST game played
+    //for matchHistory indexes, 0 is last game played, and 1 is the game played before that
     public ParticipantStats getLastMatchStats(String SummonerName){
         Summoner currentSummoner = getSummoner(SummonerName);
         MatchHistory matchHistory = getMatchHistory(SummonerName);
 
-        ParticipantStats SummonerStats = matchHistory.get(matchHistory.size()-1).getParticipants().find(currentSummoner).getStats();
+        ParticipantStats SummonerStats = matchHistory.get(0).getParticipants().find(currentSummoner).getStats();
         
         return SummonerStats;
     }
 
-    //checks to see if summoner inted their LAST game
+    // checks to see if summoner inted their LAST game
+    // not useful after writing last game KDA
     public boolean inted(String SummonerName){
         ParticipantStats SummonerStats = getLastMatchStats(SummonerName);
 
         return SummonerStats.getAssists() + SummonerStats.getKills() <= SummonerStats.getDeaths();
+    }
+
+    //gets the KDA of the player in their last game as a list
+    public int[] lastGameKDA(String SummonerName) {
+        ParticipantStats SummonerStats = getLastMatchStats(SummonerName);
+        return new int[] {SummonerStats.getKills(),SummonerStats.getDeaths(),SummonerStats.getAssists()};
     }
 
     //checks to see if the summoner is new to the database

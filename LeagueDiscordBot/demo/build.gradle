@@ -10,9 +10,11 @@ sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {
+	compile 'net.dv8tion:JDA:4.2.0_168'
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation "com.merakianalytics.orianna:orianna:4.0.0-rc7"
