@@ -4,7 +4,7 @@ import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class BotSystem {
-    private MessageChannel defaultChannel;
+    public static MessageChannel defaultChannel;
 
     public boolean perms(MessageReceivedEvent event){
         boolean correctChannel = defaultChannel.equals(event.getChannel());
