@@ -42,5 +42,9 @@ public class Commands extends ListenerAdapter {
             BotSystem.defaultChannel.sendMessage(intCheckLoop.SummonerList()).queue();
         }
 
+        if ((prefix + "updatekey").equalsIgnoreCase(args[0])){
+            BotSystem.defaultChannel.sendMessage("Riot API key updated.").queue();
+        }
+
     }
 }

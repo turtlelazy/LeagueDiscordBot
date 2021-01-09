@@ -24,15 +24,21 @@ public class IntCheckLoop {
         final Runnable intCheck = new Runnable() {
             public void run() {
                 for(int i = 0; i < summonerNames.size();i++){
-                    int[] kda = ritoSummoner.lastGameKDA(summonerNames.get(i));
-                    if(kda[0]+kda[2]<=kda[1]){
-                        BotSystem.defaultChannel.sendMessage(summonerNames.get(i) + " inted. They went " 
-                        + kda[0] + "/" + kda[1] + "/" + kda[2]+ " in their last game.").queue();
+                    try {
+                        int[] kda = ritoSummoner.lastGameKDA(summonerNames.get(i));
+                        if(kda[0]+kda[2]<=kda[1]){
+                            BotSystem.defaultChannel.sendMessage(summonerNames.get(i) + " inted. They went " 
+                            + kda[0] + "/" + kda[1] + "/" + kda[2]+ " in their last game.").queue();
+                        }
+                        else{
+                            BotSystem.defaultChannel.sendMessage(summonerNames.get(i) + " didn't int their last game. Good job " 
+                            + summonerNames.get(i) + "They went " + kda[0] + "/" + kda[1] + "/" + kda[2]
+                            + " in their last game.").queue();
+                        }
                     }
-                    else{
-                        BotSystem.defaultChannel.sendMessage(summonerNames.get(i) + " didn't int their last game. Good job " 
-                        + summonerNames.get(i) + "They went " + kda[0] + "/" + kda[1] + "/" + kda[2]
-                        + " in their last game.").queue();
+                    catch(Exception e){
+                        BotSystem.defaultChannel.sendMessage("There was an error in calling"
+                        + " the API. Maybe the API key is expired. Try updating it.").queue();
                     }
                     
                 }
