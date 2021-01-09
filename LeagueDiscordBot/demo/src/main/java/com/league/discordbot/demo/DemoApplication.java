@@ -1,3 +1,4 @@
+//Code testing class
 package com.league.discordbot.demo;
 
 import com.league.discordbot.demo.riot.RitoSummoner;
@@ -21,10 +22,18 @@ public class DemoApplication {
 		ritoAPIRunner.init();
 
 		//test for int method; delete later
-		int[] kda = ritoAPIRunner.lastGameKDA("xJosephCoolx");
-		System.out.println(kda[0]);
-		System.out.println(kda[1]);
-		System.out.println(kda[2]);
+		/*
+		String[] summoners = {"time","fishrocks","xjosephcoolx","endiah","what came first"};
+		for(int i = 0; i < summoners.length; i++){
+			int[] kda = ritoAPIRunner.lastGameKDA(summoners[i]);
+			System.out.println(kda[0]);
+			System.out.println(kda[1]);
+			System.out.println(kda[2]);
+		}
+		*/
+
+		System.out.println(ritoAPIRunner.exists("xjosephcoolx"));
+		
 
 	}
 

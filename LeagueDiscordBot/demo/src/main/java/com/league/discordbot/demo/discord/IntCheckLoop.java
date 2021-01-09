@@ -1,3 +1,4 @@
+//this runs code at regular intervals and interacts with Riot's API
 package com.league.discordbot.demo.discord;
 
 import static java.util.concurrent.TimeUnit.MINUTES;
@@ -30,7 +31,8 @@ public class IntCheckLoop {
                     }
                     else{
                         BotSystem.defaultChannel.sendMessage(summonerNames.get(i) + " didn't int their last game. Good job " 
-                        + summonerNames.get(i)).queue();
+                        + summonerNames.get(i) + "They went " + kda[0] + "/" + kda[1] + "/" + kda[2]
+                        + " in their last game.").queue();
                     }
                     
                 }
@@ -40,11 +42,21 @@ public class IntCheckLoop {
         final ScheduledFuture<?> intCheckHandle = scheduler.scheduleAtFixedRate(intCheck, 0, 10, MINUTES);
     }
 
-    public void remove(String summonerString){
-        summonerNames.remove(summonerString);
+    public boolean remove(String summonerString){
+        return summonerNames.remove(summonerString);
     }
 
-    public void add(String summonerString){
-        summonerNames.add(summonerString);
+    public boolean add(String summonerString){
+        if  (!summonerNames.contains(summonerString) && 
+            ritoSummoner.exists(summonerString))
+        {
+            summonerNames.add(summonerString);
+            return true;
+        }
+        return false;
+    }
+
+    public String SummonerList(){
+        return summonerNames.toString();
     }
 }

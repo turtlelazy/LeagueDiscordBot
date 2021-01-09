@@ -1,3 +1,4 @@
+//This class is for managing bot permissions and default functionality
 package com.league.discordbot.demo.discord;
 
 import net.dv8tion.jda.api.entities.MessageChannel;

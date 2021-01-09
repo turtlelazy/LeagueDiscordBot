@@ -60,6 +60,11 @@ public class RitoSummoner {
         return SummonerStats;
     }
 
+    public boolean exists(String SummonerName){
+        Summoner currentSummoner = getSummoner(SummonerName);
+        return currentSummoner.exists();
+    }
+
     // checks to see if summoner inted their LAST game
     // not useful after writing last game KDA
     public boolean inted(String SummonerName){

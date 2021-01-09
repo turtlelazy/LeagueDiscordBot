@@ -1,3 +1,4 @@
+//This is for running commands in response to messages
 package com.league.discordbot.demo.discord;
 
 import net.dv8tion.jda.api.entities.MessageChannel;
@@ -19,15 +20,27 @@ public class Commands extends ListenerAdapter {
         }
 
         if ((prefix + "add").equalsIgnoreCase(args[0])) {
-            intCheckLoop.add(args[1]);
-            BotSystem.defaultChannel.sendMessage("Summoner added!").queue();
+            if(intCheckLoop.add(args[1])){
+                BotSystem.defaultChannel.sendMessage("Summoner added!").queue();
+            }
+            else{
+                BotSystem.defaultChannel.sendMessage("Summonder either doesn't exist or "
+                + "was already added.").queue();
+            }
         }
 
         if ((prefix + "remove").equalsIgnoreCase(args[0])) {
-            intCheckLoop.remove(args[1]);
-            BotSystem.defaultChannel.sendMessage("Summoner removed!").queue();
+            if(intCheckLoop.remove(args[1])){
+                BotSystem.defaultChannel.sendMessage("Summoner removed!").queue();
+            }
+            else{
+                BotSystem.defaultChannel.sendMessage("Summoner doesn't exist or is already added.").queue();
+            }
+        }
+
+        if ((prefix + "summonerlist").equalsIgnoreCase(args[0])) {
+            BotSystem.defaultChannel.sendMessage(intCheckLoop.SummonerList()).queue();
         }
 
     }
-    
 }
