@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Private {
     public static String ritoKey;
-    public static String discKey = "Nzc2OTQwNzYxMTgyMjQwODE4.X68MeA.AlDgkQYWCOjPkGw93anQVQTbWX0";
+    public static String discKey;
 
     public static void updateKeys() throws FileNotFoundException{
         System.out.println(new File(".").getAbsolutePath());
@@ -14,6 +14,7 @@ public class Private {
         Scanner input = new Scanner(keyFiles);
 
         ritoKey = input.next();
+        discKey = input.next();
         
     }
 }
